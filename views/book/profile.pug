@@ -2,7 +2,7 @@ extends ../layout
 
 block content
     h3= book.title
-
+    a(href = `/books/edit/${book.id}`) Edit Course
     div
         img(src = book.cover_image)
         p Genre: #{book.genre}
