@@ -22,4 +22,11 @@ router.post('/books/add', bookController.addBook);
 
 router.get('/books/delete/:id', bookController.deleteBook);
 
+
+router.get('/authors', authorController.viewAll);
+
+router.get('/authors/profile/:id', authorController.viewProfile);
+
+router.get('/authors/edit/:id', authorController.renderEditForm);
+
 module.exports = router;
