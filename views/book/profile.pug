@@ -7,7 +7,10 @@ block content
     div
         img(src = book.cover_image)
         p Genre: #{book.genre}
-        // for author
+        each author in book.author
+            p Author(s): #{author.first_name} #{author.last_name}
+                a(href = `/authors/profile/${author.id}`) View Author
         p Publisher: #{book.publisher}
         p Page Count: #{book.page_count}
         p= book.description
+

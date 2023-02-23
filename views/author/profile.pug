@@ -7,3 +7,27 @@ block content
     div
         h3 Name: #{author.first_name} #{author.last_name}
         p Date of Birth: #{author.date_of_birth}
+
+    h4 List of Works
+    form(action = `/authors/${author.id}/add/` method = 'post')
+        select(name = 'book' id = 'course' autocomplete = off)
+            each book in availableBooks
+                option(value = book.id) #{book.title}
+        button.button(type = 'submit') Add
+    table
+        thead
+            tr
+                th Title
+                th Genre
+                th Publisher
+                th Page Count
+                th
+        tbody
+            each book in author.book
+                tr
+                    td= book.title
+                    td= book.genre
+                    td= book.publisher
+                    td= book.page_count
+                    td
+                        a(href = `/books/profile/${book.id}`) View Book
