@@ -37,4 +37,13 @@ router.post('/authors/add', authorController.addAuthor);
 
 router.get('/authors/delete/:id', authorController.deleteAuthor);
 
+
+router.post('/authors/:authorId/add', authorController.addBookToAuthor);
+
+router.get('/authors/:authorId/removeBook/:bookId', authorController.removeBook)
+
+router.post('/books/:bookId/add', bookController.addAuthorToBook);
+
+router.get('/books/:bookId/removeAuthor/:authorId', bookController.removeAuthor)
+
 module.exports = router;

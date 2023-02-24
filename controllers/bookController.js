@@ -1,4 +1,4 @@
-const {Book} = require('../models');
+const {Book, Author, BookAuthor} = require('../models');
 const genres = ['Non-fiction', 'Fiction', 'Fantasy', 'Sci-Fi', 'Horror', 'Psychological Horror', 'Modernist', 'Mystery', 'Graphic Novel', 'Thriller', 'Autobiography'];
 
 // view all
@@ -12,7 +12,14 @@ module.exports.viewProfile = async function (req, res) {
     const book = await Book.findByPk(req.params.id, {
         include: 'author'
     });
-    res.render('book/profile', {book})
+    const authors = await Author.findAll();
+    let availableAuthors = [];
+    for (let i = 0; i < authors.length; i++) {
+        if (!bookHasAuthor(book, authors[i])) {
+            availableAuthors.push(authors[i]);
+        }
+    }
+    res.render('book/profile', {book, availableAuthors})
 };
 
 // render add form
@@ -72,4 +79,32 @@ module.exports.deleteBook = async function (req, res) {
         }
     });
     res.redirect('/books')
+}
+
+// add author to book
+module.exports.addAuthorToBook = async function(req, res) {
+    await BookAuthor.create({
+        author_id: req.body.author,
+        book_id: req.params.bookId,
+    });
+    res.redirect(`/books/profile/${req.params.bookId}`)
+}
+
+module.exports.removeAuthor = async function (req, res) {
+    await BookAuthor.destroy({
+        where: {
+            book_id: req.params.bookId,
+            author_id: req.params.authorId
+        }
+    });
+    res.redirect(`/books/profile/${req.params.bookId}`)
+}
+
+function bookHasAuthor(book, author) {
+    for (let i = 0; i < book.author.length; i++) {
+        if (author.id === book.author[i].id) {
+            return true
+        }
+    }
+    return false
 }

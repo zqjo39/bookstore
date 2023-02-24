@@ -72,13 +72,24 @@ module.exports.deleteAuthor = async function (req, res) {
     res.redirect('/authors')
 }
 
-// Add book to author
+// add book to author
 module.exports.addBookToAuthor = async function (req, res) {
 
     await BookAuthor.create({
         book_id: req.body.book,
         author_id: req.params.authorId
     })
+    res.redirect(`/authors/profile/${req.params.authorId}`)
+}
+
+// remove book from author
+module.exports.removeBook = async function (req, res) {
+    await BookAuthor.destroy({
+        where: {
+            book_id: req.params.bookId,
+            author_id: req.params.authorId
+        }
+    });
     res.redirect(`/authors/profile/${req.params.authorId}`)
 }
 
