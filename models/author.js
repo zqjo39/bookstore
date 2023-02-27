@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   Author.init({
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
+    picture: DataTypes.STRING,
     date_of_birth: DataTypes.DATE
   }, {
     sequelize,

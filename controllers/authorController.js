@@ -27,6 +27,7 @@ module.exports.renderAddForm = function (req, res) {
     const author = {
         first_name: '',
         last_name: '',
+        picture: '',
         date_of_birth: 0,
     }
     res.render('author/add', {author});
@@ -37,6 +38,7 @@ module.exports.addAuthor = async function (req, res) {
     const author = await Author.create({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
+        picture: req.body.picture,
         date_of_birth: req.body.date_of_birth,
     })
     res.redirect(`/authors/profile/${author.id}`);
@@ -53,6 +55,7 @@ module.exports.updateAuthor = async function (req, res) {
     const author = await Author.update({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
+        picture: req.body.picture,
         date_of_birth: req.body.date_of_birth,
     }, {
         where: {

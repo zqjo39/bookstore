@@ -6,6 +6,7 @@ block content
     table
         thead
             tr
+                th Picture
                 th First
                 th Last
                 th Date Of Birth
@@ -13,6 +14,8 @@ block content
         tbody
             each author in authors
                 tr
+                    td
+                        img(src = author.picture)
                     td= author.first_name
                     td= author.last_name
                     td= author.date_of_birth

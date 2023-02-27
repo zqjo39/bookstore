@@ -1,15 +1,29 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background: #CBD5E1;
+  background: #e0e1be;
   padding: 0;
   margin: 0;
 }
 
 a {
   display: inline-block;
-  color: #0284C7;
+  color: #610406;
   margin-right: 16px;
   text-decoration: none;
+}
+
+.welcome {
+  text-align: center;
+}
+
+.subwelcome {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+a.select {
+  align-content: space-between;
 }
 
 nav {
@@ -36,7 +50,7 @@ nav ul {
 nav li a {
   display: block;
   padding: 20px 30px;
-  color: #075895
+  color: #610406
 }
 
 .nav-content {
