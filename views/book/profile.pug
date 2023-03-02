@@ -4,24 +4,27 @@ block content
     h3= book.title
     a(href = `/books/edit/${book.id}`) Edit Book
     a(href = `/books/delete/${book.id}`) Delete Book
-    div
-        img(src = book.cover_image)
-        p Genre: #{book.genre}
-        p Author(s):
-        each author in book.author
-            p #{author.first_name} #{author.last_name}
-                a(href = `/authors/profile/${author.id}`) View Author
-                a(href = `/books/${book.id}/removeAuthor/${author.id}`) Remove Author
-        p Publisher: #{book.publisher}
-        p Page Count: #{book.page_count}
-        p= book.description
-    div.authors
-        h4 Available Authors
-        if availableAuthors.length > 0
-            form(action = `/books/${book.id}/add` method = 'post')
-                select(name = 'author' id = 'author' autocomplete = off)
-                    each author in availableAuthors
-                        option(value = author.id) #{author.first_name} #{author.last_name}
-                button.button.primary(type = 'submit') Add
-        else
-            p
+    div.parent
+        div.child
+            img.profile-cover(src = book.cover_image)
+        div.child
+            p Genre: #{book.genre}
+            p Author(s):
+            each author in book.author
+                p #{author.first_name} #{author.last_name} -
+                    a(href = `/authors/profile/${author.id}`) View Author
+                    a(href = `/books/${book.id}/removeAuthor/${author.id}`) Remove Author
+                div.authors
+                    h4 Available Authors
+                    if availableAuthors.length >= 0
+                        form(action = `/books/${book.id}/add` method = 'post')
+                            select(name = 'author' id = 'author' autocomplete = off)
+                                each author in availableAuthors
+                                    option(value = author.id) #{author.first_name} #{author.last_name}
+                            button.button.primary(type = 'submit') Add
+                    else
+                        p
+            p Publisher: #{book.publisher}
+            p Page Count: #{book.page_count}
+            p= book.description
+

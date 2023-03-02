@@ -1,35 +1,34 @@
 extends ../layout
 
 block content
-
+    h3 #{author.first_name} #{author.last_name}
     a(href = `/authors/edit/${author.id}`) Edit Author
     a(href = `/authors/delete/${author.id}`) Delete Author
-    div
-        img(src = author.picture)
-        h3 Name: #{author.first_name} #{author.last_name}
-        p Date of Birth: #{author.date_of_birth}
-
-    h4 List of Works
-    form(action = `/authors/${author.id}/add/` method = 'post')
-        select(name = 'book' id = 'course' autocomplete = off)
-            each book in availableBooks
-                option(value = book.id) #{book.title}
-        button.button.primary(type = 'submit') Add
-    table
-        thead
-            tr
-                th Title
-                th Genre
-                th Publisher
-                th Page Count
-                th
-        tbody
-            each book in author.book
-                tr
-                    td= book.title
-                    td= book.genre
-                    td= book.publisher
-                    td= book.page_count
-                    td
-                        a(href = `/books/profile/${book.id}`) View Book
-                        a(href = `/authors/${author.id}/removeBook/${book.id}`) Remove Book
+    div.parent
+        div.child
+            img.profile-author(src = author.picture)
+        div.child
+            h4 List of Works
+            form(action = `/authors/${author.id}/add/` method = 'post')
+                select(name = 'book' id = 'course' autocomplete = off)
+                    each book in availableBooks
+                        option(value = book.id) #{book.title}
+                button.button.primary(type = 'submit') Add
+            table
+                thead
+                    tr
+                        th Title
+                        th Genre
+                        th Publisher
+                        th Page Count
+                        th
+                tbody
+                    each book in author.book
+                        tr
+                            td= book.title
+                            td= book.genre
+                            td= book.publisher
+                            td= book.page_count
+                            td
+                                a(href = `/books/profile/${book.id}`) View Book
+                                a(href = `/authors/${author.id}/removeBook/${book.id}`) Remove Book

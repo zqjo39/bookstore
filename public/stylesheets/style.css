@@ -12,6 +12,15 @@ a {
   text-decoration: none;
 }
 
+.parent {
+  display: flex;
+}
+
+.child {
+  flex-direction: row;
+  padding: 10px;
+}
+
 .welcome {
   text-align: center;
 }
@@ -27,7 +36,7 @@ a.select {
 }
 
 nav {
-  width: 100%;
+  width: 146%;
   background: white;
   margin-bottom: 50px;
   display: flex;
@@ -45,6 +54,14 @@ nav ul {
 .library-title {
   font-size: 20px;
   padding-left: 64px;
+}
+
+.author {
+  width: 50%;
+}
+
+.cover {
+  width: 50%;
 }
 
 nav li a {

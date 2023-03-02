@@ -15,10 +15,11 @@ block content
             each author in authors
                 tr
                     td
-                        img(src = author.picture)
+                        img.author(src = author.picture)
                     td= author.first_name
                     td= author.last_name
                     td= author.date_of_birth
                     td
                         a(href = `/authors/profile/${author.id}`) View Author
+                        a(href = `/authors/delete/${author.id}`) Delete Author
 
